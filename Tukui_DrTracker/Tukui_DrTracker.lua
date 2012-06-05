@@ -1,5 +1,27 @@
 local T, C, L = unpack(Tukui)
 
+
+local framelist = {
+--	[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
+	["TukuiPlayer"]	= {"player",35,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
+	["TukuiArena1"]	= {"arena1",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+	["TukuiArena2"]	= {"arena2",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+	["TukuiArena3"]	= {"arena3",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+	["TukuiArena4"]	= {"arena4",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+	["TukuiArena5"]	= {"arena5",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+	}
+
+if T.myname == "Ildyria" then
+	framelist = {
+		["TukuiPlayer"]	= {"player",20,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
+		["TukuiArena1"]	= {"arena1",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
+		["TukuiArena2"]	= {"arena2",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
+		["TukuiArena3"]	= {"arena3",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
+		["TukuiArena4"]	= {"arena4",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
+		["TukuiArena5"]	= {"arena5",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
+		}
+end
+
 local function GetSpellDR() 
 	return {
 		--[[ TAUNT ]]--
@@ -353,26 +375,6 @@ local function CombatLogCheck(self, ...)																-- Combat event handler
 	if (needupdate) then DisplayDrActives(self) end
 end
 
-local framelist = {
---	[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
-	["TukuiPlayer"]	= {"player",35,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
-	["TukuiArena1"]	= {"arena1",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-	["TukuiArena2"]	= {"arena2",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-	["TukuiArena3"]	= {"arena3",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-	["TukuiArena4"]	= {"arena4",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-	["TukuiArena5"]	= {"arena5",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-	}
-
-if T.myname == "Ildyria" then
-	-- framelist = {
-		-- ["TukuiPlayer"]	= {"player",20,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
-		-- ["TukuiArena1"]	= {"arena1",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		-- ["TukuiArena2"]	= {"arena2",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		-- ["TukuiArena3"]	= {"arena3",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		-- ["TukuiArena4"]	= {"arena4",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		-- ["TukuiArena5"]	= {"arena5",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		-- }
-end
 --Drtracker Frame
 for frame, target in pairs(framelist) do
 	self = _G[frame]

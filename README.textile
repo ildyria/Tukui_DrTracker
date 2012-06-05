@@ -22,7 +22,7 @@ p. Launch the game and enjoy !
 
 h3. Configuration
 
-p. Resizing & some other options can be done via LUA at the end of the LUA file.
+p. Resizing & some other options can be done at the begining of the LUA file.
 
 <pre>
 	Use /tdr to have a preview.
