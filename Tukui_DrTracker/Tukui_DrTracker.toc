@@ -1,0 +1,9 @@
+## Interface: 40300
+## Version: 1.0
+## Author: Ildyria
+## Title: |cffC495DDTukui|r |cffffffffDrTracker|r
+## Credits: Jasje
+## Notes: DrTracker for Tukui
+## RequiredDeps: Tukui
+
+Tukui_DrTracker.lua
