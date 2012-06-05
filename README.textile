@@ -1,0 +1,39 @@
+h2. Tukui DrTracker
+
+h3. About
+
+p. Tukui DrTracker is a small Diminishing Returns Tracker on arena frame and player frame.
+
+p. The default config is VERY bar/icon spammy, you'll probably want to go through and comment out a bunch of stuff for a usable setup.
+
+h3. Download
+
+h4. World of Warcraft (4.3 live)
+
+p. "Latest Version":https://github.com/ildyria/Tukui_DrTracker/zipball/master
+
+h3. Installation
+
+p. Download the zip file and unzip it. You will find the README and a folder named : *Tukui_DrTracker*. Copy the folder into you World of Warcraft\Interface\AddOns\ folder.
+
+p. *Tukui_DrTracker require the use of Tukui.*
+
+p. Launch the game and enjoy !
+
+h3. Configuration and moving bars
+
+p. Resizing & some other options can be done via LUA at the end of the LUA file.
+
+<pre>
+	Use /tdr to have a preview.
+</pre>
+
+h3. Screenshots
+
+!http://i40.servimg.com/u/f40/11/00/34/63/tdr110.png!
+
+!http://i40.servimg.com/u/f40/11/00/34/63/tdr210.png!
+
+h3. I need your help !
+
+p. The might me some mistakes with shared DR. If you find them, please open a Issue or post on Tukui Forum.
