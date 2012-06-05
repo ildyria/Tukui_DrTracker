@@ -20,7 +20,7 @@ p. *Tukui_DrTracker require the use of Tukui.*
 
 p. Launch the game and enjoy !
 
-h3. Configuration and moving bars
+h3. Configuration
 
 p. Resizing & some other options can be done via LUA at the end of the LUA file.
 
@@ -28,6 +28,10 @@ p. Resizing & some other options can be done via LUA at the end of the LUA file.
 	Use /tdr to have a preview.
 </pre>
 
+p. Yellow = Half Duration
+Orange = Quarter Duration
+Red = Immune
+ 
 h3. Screenshots
 
 !http://i40.servimg.com/u/f40/11/00/34/63/tdr110.png!
@@ -36,4 +40,4 @@ h3. Screenshots
 
 h3. I need your help !
 
-p. The might me some mistakes with shared DR. If you find them, please open a Issue or post on Tukui Forum.
+p. There might me some mistakes with shared DR. If you find them, please open a Issue or post on Tukui Forum.
