@@ -260,7 +260,7 @@ function DisplayDrActives(self)
 		aura = self.auras[index]
 		aura.icon:SetTexture(value.icon)
 		if(value.dr == 1) then
-			aura:SetBackdropBorderColor(1,1,0,1)
+			aura:SetBackdropBorderColor(0,1,0,1)
 		elseif(value.dr == 2) then
 			aura:SetBackdropBorderColor(1,.5,0,1)
 		else
@@ -288,13 +288,14 @@ local spell = GetSpellDR()
 
 local icon = GetDrIcons()
 
+local eventRegistered = {
+	["SPELL_AURA_APPLIED"] = true,
+	["SPELL_AURA_REFRESH"] = true,
+	["SPELL_AURA_REMOVED"] = true
+	}
+
 local function CombatLogCheck(self, ...)																-- Combat event handler
 	local _, _, eventType, _, _, _, _, _, destGUID, _, _, _, spellID, _, _, auraType, _ = ...
-	local eventRegistered = {
-		["SPELL_AURA_APPLIED"] = true,
-		["SPELL_AURA_REFRESH"] = true,
-		["SPELL_AURA_REMOVED"] = true
-		}
 		
 	if( not eventRegistered[eventType] ) then
 		return

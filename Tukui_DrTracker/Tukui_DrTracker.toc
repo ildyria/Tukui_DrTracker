@@ -1,8 +1,8 @@
 ## Interface: 40300
-## Version: 1.1
+## Version: 1.2
 ## Author: Ildyria
 ## Title: |cffC495DDTukui|r |cffffffffDrTracker|r
-## Credits: Jasje, Catok
+## Credits: Jasje, Catok, Hydra
 ## Notes: DrTracker for Tukui and ElvUI
 ## OptionalDeps: Tukui, ElvUI
 
