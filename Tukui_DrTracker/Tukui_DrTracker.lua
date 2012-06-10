@@ -1,25 +1,34 @@
-local T, C, L = unpack(Tukui)
+local framelist
 
-
-local framelist = {
---	[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
-	["TukuiPlayer"]	= {"player",35,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
-	["TukuiArena1"]	= {"arena1",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-	["TukuiArena2"]	= {"arena2",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-	["TukuiArena3"]	= {"arena3",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-	["TukuiArena4"]	= {"arena4",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-	["TukuiArena5"]	= {"arena5",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+if Tukui then
+	framelist = {
+		--[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
+		["TukuiPlayer"]	= {"player",35,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
+		["TukuiArena1"]	= {"arena1",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+		["TukuiArena2"]	= {"arena2",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+		["TukuiArena3"]	= {"arena3",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+		["TukuiArena4"]	= {"arena4",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+		["TukuiArena5"]	= {"arena5",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
 	}
 
-if T.myname == "Ildyria" then
+	if UnitName("player") == "Ildyria" then
+		framelist["TukuiPlayer"]	= {"player",20,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0}
+		framelist["TukuiArena1"]	= {"arena1",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
+		framelist["TukuiArena2"]	= {"arena2",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
+		framelist["TukuiArena3"]	= {"arena3",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
+		framelist["TukuiArena4"]	= {"arena4",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
+		framelist["TukuiArena5"]	= {"arena5",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
+	end
+elseif ElvUI then
 	framelist = {
-		["TukuiPlayer"]	= {"player",20,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
-		["TukuiArena1"]	= {"arena1",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		["TukuiArena2"]	= {"arena2",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		["TukuiArena3"]	= {"arena3",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		["TukuiArena4"]	= {"arena4",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		["TukuiArena5"]	= {"arena5",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0},
-		}
+		--[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
+		["ElvUF_Player"]	= {"player",40,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
+		["ElvUF_Arena1"]	= {"arena1",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
+		["ElvUF_Arena2"]	= {"arena2",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
+		["ElvUF_Arena3"]	= {"arena3",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
+		["ElvUF_Arena4"]	= {"arena4",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
+		["ElvUF_Arena5"]	= {"arena5",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
+	}
 end
 
 local function GetSpellDR() 
@@ -234,10 +243,6 @@ function DisplayDrActives(self)
 			aura.cooldown = CreateFrame("Cooldown", "$parentCD", aura, "CooldownFrameTemplate")
 			aura.cooldown:SetAllPoints(aura.icon)
 			aura.cooldown:SetReverse()
-			aura.count = aura:CreateFontString("$parentCount", "OVERLAY")
-			aura.count:SetFont(C["media"].pixelfont, 20, "OUTLINE")
-			aura.count:Point("BOTTOMRIGHT", -1, 1)
-			aura.count:SetJustifyH("CENTER")
 			aura.cat = "cat"
 			aura.start = 0
 			
@@ -254,8 +259,6 @@ function DisplayDrActives(self)
 	for cat, value in pairs(self.actives) do
 		aura = self.auras[index]
 		aura.icon:SetTexture(value.icon)
-		aura.count:SetText(value.dr)
-		aura.count:Hide()
 		if(value.dr == 1) then
 			aura:SetBackdropBorderColor(1,1,0,1)
 		elseif(value.dr == 2) then
