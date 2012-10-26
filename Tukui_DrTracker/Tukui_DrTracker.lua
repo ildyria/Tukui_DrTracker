@@ -3,7 +3,7 @@ local framelist
 if Tukui then
 	framelist = {
 		--[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
-		["TukuiPlayer"]	= {"player",35,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
+		["TukuiPlayer"]	= {"player",34,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
 		["TukuiArena1"]	= {"arena1",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
 		["TukuiArena2"]	= {"arena2",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
 		["TukuiArena3"]	= {"arena3",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
@@ -22,7 +22,7 @@ if Tukui then
 elseif ElvUI then
 	framelist = {
 		--[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
-		["ElvUF_Player"]	= {"player",40,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
+		["ElvUF_Player"]	= {"player",36,"TOPLEFT","BOTTOMLEFT",-1,-14,"LEFT","RIGHT",2,0},
 		["ElvUF_Arena1"]	= {"arena1",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
 		["ElvUF_Arena2"]	= {"arena2",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
 		["ElvUF_Arena3"]	= {"arena3",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
@@ -34,149 +34,162 @@ end
 local function GetSpellDR() 
 	return {
 		--[[ TAUNT ]]--
-		[  355] = {"taunt"}, -- Taunt (Warrior)
-		[53477] = {"taunt"}, -- Taunt (Hunter tenacity pet)
-		[ 6795] = {"taunt"}, -- Growl (Druid)
-		[56222] = {"taunt"}, -- Dark Command
-		[62124] = {"taunt"}, -- Hand of Reckoning
-		[31790] = {"taunt"}, -- Righteous Defense
-		[20736] = {"taunt"}, -- Distracting Shot
-		[ 1161] = {"taunt"}, -- Challenging Shout
-		[ 5209] = {"taunt"}, -- Challenging Roar
-		[57603] = {"taunt"}, -- Death Grip
-		[17735] = {"taunt"}, -- Suffering (Voidwalker)
-		[58857] = {"taunt"}, -- Twin Howl (Spirit wolves)
+		[ 56222] = {"taunt"}, -- Dark Command
+		[ 57603] = {"taunt"}, -- Death Grip
+		[ 49560] = {"taunt"}, -- Death Grip
+		[ 51399] = {"taunt"}, -- Death Grip
+		[  6795] = {"taunt"}, -- Growl
+		[ 20736] = {"taunt"}, -- Distracting Shot
+		[116189] = {"taunt"}, -- Provoke
+		[ 62124] = {"taunt"}, -- Reckoning
+		[ 17735] = {"taunt"}, -- Suffering (Voidwalker)
+		[   355] = {"taunt"}, -- Taunt
+		[ 36213] = {"taunt"}, -- Angered Earth -- FIXME: NPC ability ?
 
 		--[[ DISORIENTS ]]--
-		[49203] = {"disorient"}, -- Hungering Cold
-		[ 6770] = {"disorient"}, -- Sap
-		[ 1776] = {"disorient"}, -- Gouge
-		[51514] = {"disorient"}, -- Hex
-		[ 9484] = {"disorient"}, -- Shackle Undead
-		[  118] = {"disorient"}, -- Polymorph
-		[28272] = {"disorient"}, -- Polymorph (pig)
-		[28271] = {"disorient"}, -- Polymorph (turtle)
-		[61305] = {"disorient"}, -- Polymorph (black cat)
-		[61025] = {"disorient"}, -- Polymorph (serpent) -- FIXME: gone ?
-		[61721] = {"disorient"}, -- Polymorph (rabbit)
-		[61780] = {"disorient"}, -- Polymorph (turkey)
-		[ 3355] = {"disorient"}, -- Freezing Trap
-		[19386] = {"disorient"}, -- Wyvern Sting
-		[20066] = {"disorient"}, -- Repentance
-		[90337] = {"disorient"}, -- Bad Manner (Monkey) -- FIXME: to check
-		[ 2637] = {"disorient"}, -- Hibernate
-		[82676] = {"disorient","ctrlstun"}, -- Ring of Frost
+		[  2637] = "disorient", -- Hibernate
+		[    99] = "disorient", -- Disorienting Roar (talent)
+		[  3355] = "disorient", -- Freezing Trap
+		[ 19386] = "disorient", -- Wyvern Sting
+		[   118] = "disorient", -- Polymorph
+		[ 28272] = "disorient", -- Polymorph (pig)
+		[ 28271] = "disorient", -- Polymorph (turtle)
+		[ 61305] = "disorient", -- Polymorph (black cat)
+		[ 61025] = "disorient", -- Polymorph (serpent) -- FIXME: gone ?
+		[ 61721] = "disorient", -- Polymorph (rabbit)
+		[ 61780] = "disorient", -- Polymorph (turkey)
+		[ 82691] = "disorient", -- Ring of Frost
+		[115078] = "disorient", -- Paralysis
+		[105421] = "disorient", -- Blinding Light
+		[ 20066] = "disorient", -- Repentance
+		[  9484] = "disorient", -- Shackle Undead
+		[  1776] = "disorient", -- Gouge
+		[  6770] = "disorient", -- Sap
+		[ 51514] = "disorient", -- Hex
+		[107079] = "disorient", -- Quaking Palm
 
 		--[[ SILENCES ]]--
-		[50479] = {"silence"}, -- Nether Shock (Nether ray)
-		[ 1330] = {"silence"}, -- Garrote
-		[25046] = {"silence"}, -- Arcane Torrent (Energy version)
-		[28730] = {"silence"}, -- Arcane Torrent (Mana version)
-		[50613] = {"silence"}, -- Arcane Torrent (Runic power version)
-		[69179] = {"silence"}, -- Arcane Torrent (Rage version)
-		[80483] = {"silence"}, -- Arcane Torrent (Focus version)
-		[15487] = {"silence"}, -- Silence
-		[34490] = {"silence"}, -- Silencing Shot
-		[18425] = {"silence"}, -- Improved Kick (rank 1)
-		[86759] = {"silence"}, -- Improved Kick (rank 2)
-		[18469] = {"silence"}, -- Improved Counterspell (rank 1)
-		[55021] = {"silence"}, -- Improved Counterspell (rank 2)
-		[24259] = {"silence"}, -- Spell Lock (Felhunter)
-		[47476] = {"silence"}, -- Strangulate
-		[18498] = {"silence"}, -- Gag Order (Warrior talent)
-		[74347] = {"silence"}, -- Gag Order (Warrior talent) -- FIXME: duplicate ?
-		[81261] = {"silence"}, -- Solar Beam
-		[31935] = {"silence"}, -- Avenger's Shield
+		[ 47476] = "silence", -- Strangulate
+		[ 78675] = "silence", -- Solar Beam -- FIXME: check id
+		[ 81261] = "silence", -- Solar Beam -- Definitely correct
+		[ 34490] = "silence", -- Silencing Shot
+		[ 55021] = "silence", -- Improved Counterspell
+		[102051] = "silence", -- Frostjaw (talent)
+		[116709] = "silence", -- Spear Hand Strike
+		[ 31935] = "silence", -- Avenger's Shield
+		[ 15487] = "silence", -- Silence
+		[  1330] = "silence", -- Garrote
+		[ 24259] = "silence", -- Spell Lock (Felhunter)
+		[115782] = "silence", -- Optical Blast (Observer)
+		[ 18498] = "silence", -- Glyph of Gag Order
+		[ 25046] = "silence", -- Arcane Torrent (Energy version)
+		[ 28730] = "silence", -- Arcane Torrent (Mana version)
+		[ 50613] = "silence", -- Arcane Torrent (Runic power version)
+		[ 69179] = "silence", -- Arcane Torrent (Rage version)
+		[ 80483] = "silence", -- Arcane Torrent (Focus version)
 
 		--[[ DISARMS ]]--
-		[91644] = {"disarm"}, -- Snatch (Bird of Prey)
-		[51722] = {"disarm"}, -- Dismantle
-		[  676] = {"disarm"}, -- Disarm
-		[64058] = {"disarm"}, -- Psychic Horror (Disarm effect)
-		[50541] = {"disarm"}, -- Clench (Scorpid)
+		[ 91644] = "disarm", -- Snatch (Bird of Prey)
+		[ 50541] = "disarm", -- Clench (Scorpid)
+		[117368] = "disarm", -- Grapple Weapon
+		[ 64058] = "disarm", -- Psychic Horror (Disarm effect)
+		[ 51722] = "disarm", -- Dismantle
+		[118093] = "disarm", -- Disarm (Voidwalker/Voidlord)
+		[   676] = "disarm", -- Disarm
 
 		--[[ FEARS ]]--
-		[ 2094] = {"fear"}, -- Blind
-		[ 5782] = {"fear"}, -- Fear (Warlock)
-		[ 6358] = {"fear"}, -- Seduction (Succubus)
-		[ 5484] = {"fear"}, -- Howl of Terror
-		[ 8122] = {"fear"}, -- Psychic Scream
-		[65545] = {"fear"}, -- Psychic Horror
-		[ 1513] = {"fear"}, -- Scare Beast
-		[10326] = {"fear"}, -- Turn Evil
-		[ 5246] = {"fear"}, -- Intimidating Shout (main target)
-		[20511] = {"fear"}, -- Intimidating Shout (secondary targets)
+		[  1513] = "fear", -- Scare Beast
+		[ 10326] = "fear", -- Turn Evil
+		[  8122] = "fear", -- Psychic Scream
+		[113792] = "fear", -- Psychic Terror (Psyfiend)
+		[  2094] = "fear", -- Blind
+		[118699] = "fear", -- Fear -- new SpellID in MoP, Blood Fear uses same ID
+		[  5484] = "fear", -- Howl of Terror
+		[  6358] = "fear", -- Seduction (Succubus)
+		[115268] = "fear", -- Mesmerize (Shivarra) -- FIXME: verify this is the correct category
+		[104045] = "fear", -- Sleep (Metamorphosis) -- FIXME: verify this is the correct category
+		[  5246] = "fear", -- Intimidating Shout (main target)
+		[ 20511] = "fear", -- Intimidating Shout (secondary targets)
 
 		--[[ CONTROL STUNS ]]--
-		[89766] = {"ctrlstun"}, -- Axe Toss (Felguard)
-		[50519] = {"ctrlstun"}, -- Sonic Blast (Bat)
-		[12809] = {"ctrlstun"}, -- Concussion Blow
-		[46968] = {"ctrlstun"}, -- Shockwave
-		[  853] = {"ctrlstun"}, -- Hammer of Justice
-		[ 5211] = {"ctrlstun"}, -- Bash
-		[19577] = {"ctrlstun"}, -- Intimidation
-		[22570] = {"ctrlstun"}, -- Maim
-		[  408] = {"ctrlstun"}, -- Kidney Shot
-		[20549] = {"ctrlstun"}, -- War Stomp
-		[20252] = {"ctrlstun"}, -- Intercept
-		[20253] = {"ctrlstun"}, -- Intercept
-		[44572] = {"ctrlstun"}, -- Deep Freeze
-		[30283] = {"ctrlstun"}, -- Shadowfury
-		[ 2812] = {"ctrlstun"}, -- Holy Wrath
-		[22703] = {"ctrlstun"}, -- Inferno Effect
-		[54785] = {"ctrlstun"}, -- Demon Leap (Warlock)
-		[47481] = {"ctrlstun"}, -- Gnaw (Ghoul)
-		[93433] = {"ctrlstun"}, -- Burrow Attack (Worm)
-		[56626] = {"ctrlstun"}, -- Sting (Wasp)
-		[85388] = {"ctrlstun"}, -- Throwdown
-		[ 1833] = {"ctrlstun"}, -- Cheap Shot
-		[ 9005] = {"ctrlstun"}, -- Pounce
-		[88625] = {"ctrlstun"}, -- Holy Word: Chastise
-		[ 7922] = {"ctrlstun"}, -- Charge
+		[108194] = "ctrlstun", -- Asphyxiate (talent)
+		[ 91800] = "ctrlstun", -- Gnaw (Ghoul)
+		[ 91797] = "ctrlstun", -- Monstrous Blow (Dark Transformation Ghoul)
+		[115001] = "ctrlstun", -- Remorseless Winter (talent)
+		[ 22570] = "ctrlstun", -- Maim
+		[  9005] = "ctrlstun", -- Pounce
+		[  5211] = "ctrlstun", -- Mighty Bash (talent)
+		[102795] = "ctrlstun", -- Bear Hug
+		[113801] = "ctrlstun", -- Bash (treants in feral spec) (Bugged by blizzard - it instantly applies all 3 levels of DR right now, making any target instantly immune to ctrlstuns)
+		[ 24394] = "ctrlstun", -- Intimidation
+		[ 90337] = "ctrlstun", -- Bad Manner (Monkey)
+		[ 50519] = "ctrlstun", -- Sonic Blast (Bat)
+		-- [ 56626] = "ctrlstun", -- Sting (Wasp) --FIXME: this doesn't share with ctrlstun anymore. Unknown what it is right now, so watch for it on www.arenajunkies.com/topic/227748-mop-diminishing-returns-updating-the-list
+		[117526] = "ctrlstun", -- Binding Shot (talent)
+		[ 44572] = "ctrlstun", -- Deep Freeze
+		[118271] = "ctrlstun", -- Combustion Impact (Combustion; Fire)
+		[119392] = "ctrlstun", -- Charging Ox Wave (talent)
+		[119381] = "ctrlstun", -- Leg Sweep (talent)
+		[122242] = "ctrlstun", -- Clash (Brewmaster)
+		[120086] = "ctrlstun", -- Fists of Fury (Windwalker)
+		[   853] = "ctrlstun", -- Hammer of Justice
+		[119072] = "ctrlstun", -- Holy Wrath (Protection)
+		[105593] = "ctrlstun", -- Fist of Justice (talent)
+		-- [ 88625] = "ctrlstun", -- Holy Word: Chastise --FIXME: this doesn't share with ctrlstun anymore. Unknown what it is right now, so watch for it on www.arenajunkies.com/topic/227748-mop-diminishing-returns-updating-the-list
+		[  1833] = "ctrlstun", -- Cheap Shot
+		[   408] = "ctrlstun", -- Kidney Shot
+		[118905] = "ctrlstun", -- Static Charge (Capacitor Totem)
+		[ 30283] = "ctrlstun", -- Shadowfury
+		[ 89766] = "ctrlstun", -- Axe Toss (Felguard)
+		-- [ 22703] = "ctrlstun", -- Infernal Awakening (Infernal) -- According to the DR thread on AJ, this doesn't have DR at all.
+		[132168] = "ctrlstun", -- Shockwave
+		[105771] = "ctrlstun", -- Warbringer (talent)
+		[ 20549] = "ctrlstun", -- War Stomp
 
 		--[[ RANDOM STUNS ]]--
-		[64343] = {"rndstun"}, -- Impact
-		[39796] = {"rndstun"}, -- Stoneclaw Stun
-		[11210] = {"rndstun"}, -- Improved Polymorph (rank 1)
-		[12592] = {"rndstun"}, -- Improved Polymorph (rank 2)
+		[113953] = "rndstun", -- Paralysis (Paralytic Poison five stack stun)
+		[118895] = "rndstun", -- Dragon Roar (talent)
+		[77505] = "rndstun", -- Earthquake Knockdown (Elemental)
+		[85387] = "rndstun", -- Aftermath (Destruction)
 
 		--[[ CYCLONE ]]--
 		[33786] = {"cyclone"}, -- Cyclone
 
 		--[[ ROOTS ]]--
-		[33395] = {"ctrlroot"}, -- Freeze (Water Elemental)
-		[50245] = {"ctrlroot"}, -- Pin (Crab)
-		[  122] = {"ctrlroot"}, -- Frost Nova
-		[  339] = {"ctrlroot"}, -- Entangling Roots
-		[19975] = {"ctrlroot"}, -- Nature's Grasp (Uses different spellIDs than Entangling Roots for the same spell)
-		[64695] = {"ctrlroot"}, -- Earthgrab (Storm, Earth and Fire talent)
-		[ 4167] = {"ctrlroot"}, -- Web (Spider)
-		[54706] = {"ctrlroot"},	-- Venom Web Spray (Silithid)
-		[19306] = {"ctrlroot"}, -- Counterattack
-		[90327] = {"ctrlroot"}, -- Lock Jaw (Dog)
-		[11190] = {"ctrlroot"}, -- Improved Cone of Cold (rank 1)
-		[12489] = {"ctrlroot","rndroot"}, -- Improved Cone of Cold (rank 2)
-
-		--[[ RANDOM ROOTS ]]--
-		[23694] = {"rndroot"}, -- Improved Hamstring -- FIXME: to check
-		[44745] = {"rndroot"}, -- Shattered Barrier (rank 1)
-		[54787] = {"rndroot"}, -- Shattered Barrier (rank 2)
+		[ 96294] = "ctrlroot", -- Chains of Ice (Chilblains Root)
+		[   339] = "ctrlroot", -- Entangling Roots
+		[ 19975] = "ctrlroot", -- Nature's Grasp (Uses different spellIDs than Entangling Roots for the same spell)
+		[102359] = "ctrlroot", -- Mass Entanglement (talent)
+		[ 50245] = "ctrlroot", -- Pin (Crab)
+		[  4167] = "ctrlroot", -- Web (Spider)
+		[ 54706] = "ctrlroot", -- Venom Web Spray (Silithid)
+		[ 90327] = "ctrlroot", -- Lock Jaw (Dog)
+		[128405] = "ctrlroot", -- Narrow Escape (talent)
+		[   122] = "ctrlroot", -- Frost Nova
+		[ 33395] = "ctrlroot", -- Freeze (Water Elemental)
+		[116706] = "ctrlroot", -- Disable
+		[114404] = "ctrlroot", -- Void Tendrils
+		[ 64695] = "ctrlroot", -- Earthgrab
+		[ 63685] = "ctrlroot", -- Freeze (Frozen Power talent)
+		[107566] = "ctrlroot", -- Staggering Shout (talent)
 
 		--[[ HORROR ]]--
-		[ 6789] = {"horror"}, -- Death Coil
-		[64044] = {"horror"}, -- Psychic Horror
-		[87099] = {"horror"}, -- Sin and Punishment (rank 1)
-		[87100] = {"horror"}, -- Sin and Punishment (rank 2)
+		[ 64044] = "horror", -- Psychic Horror (Horrify effect)
+		[ 87204] = "horror", -- Sin and Punishment (MoP PvP 4 piece)
+		[  6789] = "horror", -- Mortal Coil
 
 		--[[ MISC ]]--
-		[19503] = {"scatters"},   -- Scatter Shot
-		[31661] = {"dragons"},    -- Dragon's Breath
-		[  605] = {"mc"},         -- Mind Control
-		[  710] = {"banish"},     -- Banish
-		[19185] = {"entrapment"}, -- Entrapment
+		[ 19503] = {"scatters"},	-- Scatter Shot
+		--[31661] = {"dragons"},	-- Dragon's Breath
+		[ 31661] = {"scatters"},	-- Dragon's Breath
+		[111340] = "iceward",		-- Ice Ward
+		[   605] = {"mc"},			-- Dominate Mind
+		[ 76780] = "bindelemental",	-- Bind Elemental
+		[   710] = {"banish"},		-- Banish
+		[ 64803] = {"entrapment"},	-- Entrapment
 
-		[79058] = {"test"}, -- Testing purpose (Intel Mage)
-		[  130] = {"test","fear"}, -- Testing purpose (Intel Mage)
+		[  1459] = {"test"}, -- Testing purpose (Intel Mage)
+		[   130] = {"test","fear"}, -- Testing purpose (Slow Fall)
 	}
 end
 
@@ -184,16 +197,17 @@ end
 local function GetDrIcons() 
 	return {
 		["banish"] = select(3,GetSpellInfo(710)),
+		["bindelemental"] = select(3,GetSpellInfo(76780)),
 		["ctrlstun"] = select(3,GetSpellInfo(44572)),
 		["cyclone"] = select(3,GetSpellInfo(33786)),
 		["disarm"] = select(3,GetSpellInfo(676)),
 		["disorient"] = select(3,GetSpellInfo(118)),
-		["entrapment"] = select(3,GetSpellInfo(19185)),
+		["entrapment"] = select(3,GetSpellInfo(64803)),
 		["fear"] = select(3,GetSpellInfo(8122)),
 		["horror"] = select(3,GetSpellInfo(64044)),
+		["iceward"] = select(3,GetSpellInfo(111340)),
 		["mc"] = select(3,GetSpellInfo(605)),
-		["rndroot"] = select(3,GetSpellInfo(12489)),
-		["rndstun"] = select(3,GetSpellInfo(64343)),
+		["rndstun"] = select(3,GetSpellInfo(113953)),
 		["ctrlroot"] = select(3,GetSpellInfo(122)),
 		["scatters"] = select(3,GetSpellInfo(19503)),
 		["dragons"] = select(3,GetSpellInfo(31661)),
@@ -260,7 +274,7 @@ function DisplayDrActives(self)
 		aura = self.auras[index]
 		aura.icon:SetTexture(value.icon)
 		if(value.dr == 1) then
-			aura:SetBackdropBorderColor(0,1,0,1)
+			aura:SetBackdropBorderColor(1,1,0,1)
 		elseif(value.dr == 2) then
 			aura:SetBackdropBorderColor(1,.5,0,1)
 		else
@@ -289,14 +303,14 @@ local spell = GetSpellDR()
 local icon = GetDrIcons()
 
 local eventRegistered = {
-	["SPELL_AURA_APPLIED"] = true,
-	["SPELL_AURA_REFRESH"] = true,
-	["SPELL_AURA_REMOVED"] = true
-	}
+		["SPELL_AURA_APPLIED"] = true,
+		["SPELL_AURA_REFRESH"] = true,
+		["SPELL_AURA_REMOVED"] = true
+		}
 
 local function CombatLogCheck(self, ...)																-- Combat event handler
 	local _, _, eventType, _, _, _, _, _, destGUID, _, _, _, spellID, _, _, auraType, _ = ...
-		
+
 	if( not eventRegistered[eventType] ) then
 		return
 	end
