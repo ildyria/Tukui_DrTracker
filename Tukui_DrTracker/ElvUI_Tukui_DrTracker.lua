@@ -1,28 +1,26 @@
-local framelist
+local framelist, self, aura, classCat
+local select = select
+local UnitGUID, GetSpellInfo, GetTime, pairs, print = UnitGUID, GetSpellInfo, GetTime, pairs, print
+local class = select(2, UnitClass('player'))
 
 if Tukui then
 	framelist = {
 		--[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
 		["TukuiPlayer"]	= {"player",34,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
-		["TukuiArena1"]	= {"arena1",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-		["TukuiArena2"]	= {"arena2",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-		["TukuiArena3"]	= {"arena3",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-		["TukuiArena4"]	= {"arena4",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
-		["TukuiArena5"]	= {"arena5",26,"TOPRIGHT","TOPLEFT",-38,-1,"RIGHT","LEFT",-2,0},
+		["TukuiArena1"]	= {"arena1",26,"TOPRIGHT","TOPLEFT",-60,-1,"RIGHT","LEFT",-2,0},
+		["TukuiArena2"]	= {"arena2",26,"TOPRIGHT","TOPLEFT",-60,-1,"RIGHT","LEFT",-2,0},
+		["TukuiArena3"]	= {"arena3",26,"TOPRIGHT","TOPLEFT",-60,-1,"RIGHT","LEFT",-2,0},
+		["TukuiArena4"]	= {"arena4",26,"TOPRIGHT","TOPLEFT",-60,-1,"RIGHT","LEFT",-2,0},
+		["TukuiArena5"]	= {"arena5",26,"TOPRIGHT","TOPLEFT",-60,-1,"RIGHT","LEFT",-2,0},
 	}
 
-	if UnitName("player") == "Ildyria" then
-		framelist["TukuiPlayer"]	= {"player",20,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0}
-		framelist["TukuiArena1"]	= {"arena1",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
-		framelist["TukuiArena2"]	= {"arena2",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
-		framelist["TukuiArena3"]	= {"arena3",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
-		framelist["TukuiArena4"]	= {"arena4",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
-		framelist["TukuiArena5"]	= {"arena5",42,"TOPRIGHT","TOPLEFT",-48,1,"RIGHT","LEFT",-2,0}
-	end
 elseif ElvUI then
 	framelist = {
 		--[FRAME NAME]	= {UNITID,SIZE,ANCHOR,ANCHORFRAME,X,Y,"ANCHORNEXT","ANCHORPREVIOUS",nextx,nexty},
-		["ElvUF_Player"]	= {"player",36,"TOPLEFT","BOTTOMLEFT",-1,-14,"LEFT","RIGHT",2,0},
+		-- My settings
+		--["ElvUF_Player"]	= {"player",36,"TOPLEFT","BOTTOMLEFT",-1,-14,"LEFT","RIGHT",2,0},
+		--["ElvUF_Target"]	= {"target",36,"TOPLEFT","BOTTOMLEFT",-1,-44,"LEFT","RIGHT",2,0},
+		["ElvUF_Player"]	= {"player",40,"TOPRIGHT","TOPLEFT",-2,0,"RIGHT","LEFT",-2,0},
 		["ElvUF_Arena1"]	= {"arena1",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
 		["ElvUF_Arena2"]	= {"arena2",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
 		["ElvUF_Arena3"]	= {"arena3",26,"TOPRIGHT","BOTTOMLEFT",-4,-10,"RIGHT","LEFT",-2,0},
@@ -31,21 +29,203 @@ elseif ElvUI then
 	}
 end
 
+if class == 'DEATHKNIGHT' then
+	classCat = {
+		["silence"] = true,
+		["ctrlstun"] = true,
+		["ctrlroot"] = true,
+		}
+elseif class == 'DRUID' then
+	classCat = {
+		["disorient"] = true,
+		["silence"] = false,
+		["fear"] = false,
+		["ctrlstun"] = true,
+		["cyclone"] = true,
+		["ctrlroot"] = true,
+		}
+elseif class == 'HUNTER' then
+	classCat = {
+		["disorient"] = true,
+		["silence"] = true,
+		["disarm"] = false,
+		["fear"] = false,
+		["ctrlstun"] = true,
+		["ctrlroot"] = true,
+		["scatters"] = true,
+		["entrapment"] = false,
+		}
+elseif class == 'MAGE' then
+	classCat = {
+		["disorient"] = true,
+		["silence"] = true,
+		["ctrlstun"] = true,
+		["ctrlroot"] = true,
+		["scatters"] = false,
+		["iceward"] = true,
+		}
+elseif class == 'MONK' then
+	classCat = {
+		["disorient"] = true,
+		["silence"] = false,
+		["disarm"] = true,
+		["ctrlstun"] = true,
+		["ctrlroot"] = true,
+		}
+elseif class == 'PALADIN' then
+	classCat = {
+		["disorient"] = true,
+		["silence"] = false,
+		["fear"] = false,
+		["ctrlstun"] = true,
+		}
+elseif class == 'PRIEST' then
+	classCat = {
+		["disorient"] = false,
+		["silence"] = true,
+		["disarm"] = false,
+		["fear"] = true,
+		["ctrlroot"] = true,
+		["horror"] = true,
+		["mc"] = true,
+		}
+elseif class == 'ROGUE' then
+	classCat = {
+		["disorient"] = true,
+		["silence"] = true,
+		["disarm"] = false,
+		["fear"] = true,
+		["ctrlstun"] = true,
+		["rndstun"] = false,
+		["ctrlroot"] = false,
+		}
+elseif class == 'SHAMAN' then
+	classCat = {
+		["disorient"] = true,
+		["ctrlstun"] = true,
+		["ctrlroot"] = true,
+		["bindelemental"] = true,
+		}
+elseif class == 'WARLOCK' then
+	classCat = {
+		["silence"] = true,
+		["disarm"] = false,
+		["fear"] = true,
+		["ctrlstun"] = true,
+		["horror"] = true,
+		["banish"] = true,
+		}
+elseif class == 'WARRIOR' then
+	classCat = {
+		["disarm"] = true,
+		["fear"] = true,
+		["ctrlstun"] = true,
+		["rndstun"] = true,
+		["ctrlroot"] = true,
+		}
+end
+
+local function GetDrIcons() 
+	if class == 'DEATHKNIGHT' then
+		return {
+		["ctrlstun"] = select(3,GetSpellInfo(108194)), --Aspyxiate
+		["ctrlroot"] = select(3,GetSpellInfo(96294)), -- Chains of Ice (Chilblains Root)
+		["silence"] = select(3,GetSpellInfo(47476)), -- Strangulate
+		}
+	elseif class == 'DRUID' then
+		return {
+		["ctrlstun"] = select(3,GetSpellInfo(5211)), -- Mighty Bash
+		["cyclone"] = select(3,GetSpellInfo(33786)),
+		["disorient"] = select(3,GetSpellInfo(2637)), -- Hibernate
+		["fear"] = select(3,GetSpellInfo(113056)), -- Intimidating Roar
+		["ctrlroot"] = select(3,GetSpellInfo(339)), -- Entangling Roots
+		["silence"] = select(3,GetSpellInfo(78675)), -- Solar Beam
+		}
+	elseif class == 'HUNTER' then
+		return {
+		["ctrlstun"] = select(3,GetSpellInfo(24394)), -- Intimidation
+		["disarm"] = select(3,GetSpellInfo(91644)), -- Snatch
+		["disorient"] = select(3,GetSpellInfo(91644)), -- Freezing Trap
+		["entrapment"] = select(3,GetSpellInfo(64803)),
+		["fear"] = select(3,GetSpellInfo(1513)), -- Scare Beast
+		["ctrlroot"] = select(3,GetSpellInfo(128405)), -- Narrow Escape
+		["scatters"] = select(3,GetSpellInfo(19503)),
+		["silence"] = select(3,GetSpellInfo(34490)), -- Silencing Shot
+		}
+	elseif class == 'MAGE' then
+		return {
+		["ctrlstun"] = select(3,GetSpellInfo(44572)),
+		["disorient"] = select(3,GetSpellInfo(118)),
+		["iceward"] = select(3,GetSpellInfo(111340)),
+		["ctrlroot"] = select(3,GetSpellInfo(122)),
+		["scatters"] = select(3,GetSpellInfo(19503)),
+		["silence"] = select(3,GetSpellInfo(55021)),
+		}
+	elseif class == 'MONK' then
+		return {
+		["ctrlstun"] = select(3,GetSpellInfo(119381)), -- Leg Sweep 
+		["disarm"] = select(3,GetSpellInfo(117368)), -- Grapple Weapon
+		["disorient"] = select(3,GetSpellInfo(115078)), -- Paralysis
+		["ctrlroot"] = select(3,GetSpellInfo(116706)), -- Disable
+		["silence"] = select(3,GetSpellInfo(116709)), -- Spear Hand Strike
+		}
+	elseif class == 'PALADIN' then
+		return {
+		["ctrlstun"] = select(3,GetSpellInfo(853)), -- Hammer of Justice
+		["disorient"] = select(3,GetSpellInfo(20066)), -- Repentance
+		["fear"] = select(3,GetSpellInfo(10326)), -- Turn Evil
+		["silence"] = select(3,GetSpellInfo(31935)), -- Avenger's Shield
+		}
+	elseif class == 'PRIEST' then
+		return {
+		["disarm"] = select(3,GetSpellInfo(64058)), -- Psychic Horror (Disarm effect)
+		["disorient"] = select(3,GetSpellInfo(9484)), -- Shackle Undead
+		["fear"] = select(3,GetSpellInfo(8122)),
+		["horror"] = select(3,GetSpellInfo(64044)),
+		["mc"] = select(3,GetSpellInfo(605)),
+		["ctrlroot"] = select(3,GetSpellInfo(114404)), -- Void Tendrils
+		["silence"] = select(3,GetSpellInfo(15487)), -- Silence
+		}
+	elseif class == 'ROGUE' then
+		return {
+		["ctrlstun"] = select(3,GetSpellInfo(408)),-- Kidney Shot
+		["disarm"] = select(3,GetSpellInfo(51722)), -- Dismantle
+		["disorient"] = select(3,GetSpellInfo(6770)), -- Sap
+		["fear"] = select(3,GetSpellInfo(2094)), -- Blind
+		["rndstun"] = select(3,GetSpellInfo(113953)), -- Paralysis
+		["ctrlroot"] = select(3,GetSpellInfo(116706)), -- Disable, because it shares icon with rndstun
+		["silence"] = select(3,GetSpellInfo(1330)), -- Garrote
+		}
+	elseif class == 'SHAMAN' then
+		return {
+		["bindelemental"] = select(3,GetSpellInfo(76780)),
+		["ctrlstun"] = select(3,GetSpellInfo(118905)), -- Static Charge (Capacitor Totem)
+		["disorient"] = select(3,GetSpellInfo(51514)), -- Hex
+		["ctrlroot"] = select(3,GetSpellInfo(64695)), -- Earthgrab
+		}
+	elseif class == 'WARLOCK' then
+		return {
+		["banish"] = select(3,GetSpellInfo(710)),
+		["ctrlstun"] = select(3,GetSpellInfo(89766)), -- Axe Toss (Felguard)
+		["disarm"] = select(3,GetSpellInfo(118093)), -- Disarm (Voidwalker/Voidlord)
+		["fear"] = select(3,GetSpellInfo(118699)), -- Fear
+		["horror"] = select(3,GetSpellInfo(6789)), -- Mortal Coil
+		["silence"] = select(3,GetSpellInfo(24259)), -- Spell Lock (Felhunter)
+		}
+	elseif class == 'WARRIOR' then
+		return {
+		["ctrlstun"] = select(3,GetSpellInfo(132168)), -- Shockwave
+		["disarm"] = select(3,GetSpellInfo(676)),
+		["fear"] = select(3,GetSpellInfo(5246)), -- Intimidating Shout
+		["rndstun"] = select(3,GetSpellInfo(118895)), -- Dragon Roar
+		["ctrlroot"] = select(3,GetSpellInfo(107566)), -- Staggering Shout 
+		}
+	end
+		--["test"] = select(3,GetSpellInfo(80353)),
+end
+
 local function GetSpellDR() 
 	return {
-		--[[ TAUNT ]]--
-		[ 56222] = {"taunt"},		-- Dark Command
-		[ 57603] = {"taunt"},		-- Death Grip
-		[ 49560] = {"taunt"},		-- Death Grip
-		[ 51399] = {"taunt"},		-- Death Grip
-		[  6795] = {"taunt"},		-- Growl
-		[ 20736] = {"taunt"},		-- Distracting Shot
-		[116189] = {"taunt"},		-- Provoke
-		[ 62124] = {"taunt"},		-- Reckoning
-		[ 17735] = {"taunt"},		-- Suffering (Voidwalker)
-		[   355] = {"taunt"},		-- Taunt
-		[ 36213] = {"taunt"},		-- Angered Earth -- FIXME: NPC ability ?
-
 		--[[ DISORIENTS ]]--
 		[  2637] = {"disorient"},	-- Hibernate
 		[    99] = {"disorient"},	-- Disorienting Roar (talent)
@@ -60,7 +240,6 @@ local function GetSpellDR()
 		[ 61780] = {"disorient"},	-- Polymorph (turkey)
 		[ 82691] = {"disorient"},	-- Ring of Frost
 		[115078] = {"disorient"},	-- Paralysis
-		[105421] = {"disorient"},	-- Blinding Light
 		[ 20066] = {"disorient"},	-- Repentance
 		[  9484] = {"disorient"},	-- Shackle Undead
 		[  1776] = {"disorient"},	-- Gouge
@@ -99,6 +278,7 @@ local function GetSpellDR()
 
 		--[[ FEARS ]]--
 		[  1513] = {"fear"},		-- Scare Beast
+		[105421] = {"fear"},		-- Blinding Light
 		[ 10326] = {"fear"},		-- Turn Evil
 		[  8122] = {"fear"},		-- Psychic Scream
 		[113792] = {"fear"},		-- Psychic Terror (Psyfiend)
@@ -180,7 +360,6 @@ local function GetSpellDR()
 
 		--[[ MISC ]]--
 		[ 19503] = {"scatters"},	-- Scatter Shot
-		--[ 31661] = {"dragons"},	-- Dragon's Breath
 		[ 31661] = {"scatters"},	-- Dragon's Breath
 		[111340] = {"iceward"},		-- Ice Ward
 		[   605] = {"mc"},			-- Dominate Mind
@@ -190,31 +369,6 @@ local function GetSpellDR()
 
 		[  1459] = {"test"},		-- Testing purpose (Intel Mage)
 		[   130] = {"test","fear"},	-- Testing purpose (Slow Fall)
-	}
-end
-
-
-local function GetDrIcons() 
-	return {
-		["banish"] = select(3,GetSpellInfo(710)),
-		["bindelemental"] = select(3,GetSpellInfo(76780)),
-		["ctrlstun"] = select(3,GetSpellInfo(44572)),
-		["cyclone"] = select(3,GetSpellInfo(33786)),
-		["disarm"] = select(3,GetSpellInfo(676)),
-		["disorient"] = select(3,GetSpellInfo(118)),
-		["entrapment"] = select(3,GetSpellInfo(64803)),
-		["fear"] = select(3,GetSpellInfo(8122)),
-		["horror"] = select(3,GetSpellInfo(64044)),
-		["iceward"] = select(3,GetSpellInfo(111340)),
-		["mc"] = select(3,GetSpellInfo(605)),
-		["rndstun"] = select(3,GetSpellInfo(113953)),
-		["ctrlroot"] = select(3,GetSpellInfo(122)),
-		["scatters"] = select(3,GetSpellInfo(19503)),
-		--["dragons"] = select(3,GetSpellInfo(31661)),
-		["silence"] = select(3,GetSpellInfo(55021)),
-		["taunt"] = select(3,GetSpellInfo(355)),
-
-		["test"] = select(3,GetSpellInfo(80353)),
 	}
 end
 
@@ -327,21 +481,23 @@ local function CombatLogCheck(self, ...)																-- Combat event handler
 		-- if( auraType == "BUFF" and spell[spellID]) then
 			if not self.actives then self.actives = {} end
 			for _,cat in pairs(spell[spellID]) do
-				if self.actives[cat] then
-					if(self.actives[cat].start + 18 < GetTime()) then
+				if classCat[cat] then
+					if self.actives[cat] then
+						if(self.actives[cat].start + 18 < GetTime()) then
+							self.actives[cat].start = GetTime()
+							self.actives[cat].dr = 1
+							self.actives[cat].icon = icon[cat]
+						else
+							self.actives[cat].start = GetTime()
+							self.actives[cat].dr = 2*self.actives[cat].dr
+							self.actives[cat].icon = icon[cat]
+						end
+					else
+						self.actives[cat] = {}
 						self.actives[cat].start = GetTime()
 						self.actives[cat].dr = 1
 						self.actives[cat].icon = icon[cat]
-					else
-						self.actives[cat].start = GetTime()
-						self.actives[cat].dr = 2*self.actives[cat].dr
-						self.actives[cat].icon = icon[cat]
 					end
-				else
-					self.actives[cat] = {}
-					self.actives[cat].start = GetTime()
-					self.actives[cat].dr = 1
-					self.actives[cat].icon = icon[cat]
 				end
 			end
 			needupdate = true
@@ -353,13 +509,15 @@ local function CombatLogCheck(self, ...)																-- Combat event handler
 		-- if( auraType == "BUFF" and spell[spellID]) then
 			if not self.actives then self.actives = {} end
 			for _,cat in pairs(spell[spellID]) do
-				if(not self.actives[cat]) then
-					self.actives[cat] = {}
-					self.actives[cat].dr = 1
+				if classCat[cat] then
+					if(not self.actives[cat]) then
+						self.actives[cat] = {}
+						self.actives[cat].dr = 1
+					end
+					self.actives[cat].start = GetTime()
+					self.actives[cat].dr = 2*self.actives[cat].dr
+					self.actives[cat].icon = icon[cat]
 				end
-				self.actives[cat].start = GetTime()
-				self.actives[cat].dr = 2*self.actives[cat].dr
-				self.actives[cat].icon = icon[cat]
 			end
 			needupdate = true
 		end
@@ -370,21 +528,23 @@ local function CombatLogCheck(self, ...)																-- Combat event handler
 		-- if( auraType == "BUFF" and spell[spellID]) then
 			if not self.actives then self.actives = {} end
 			for _,cat in pairs(spell[spellID]) do
-				if self.actives[cat] then
-					if(self.actives[cat].start + 18 < GetTime()) then
+				if classCat[cat] then
+					if self.actives[cat] then
+						if(self.actives[cat].start + 18 < GetTime()) then
+							self.actives[cat].start = GetTime()
+							self.actives[cat].dr = 1
+							self.actives[cat].icon = icon[cat]
+						else
+							self.actives[cat].start = GetTime()
+							self.actives[cat].dr = self.actives[cat].dr
+							self.actives[cat].icon = icon[cat]
+						end
+					else
+						self.actives[cat] = {}
 						self.actives[cat].start = GetTime()
 						self.actives[cat].dr = 1
 						self.actives[cat].icon = icon[cat]
-					else
-						self.actives[cat].start = GetTime()
-						self.actives[cat].dr = self.actives[cat].dr
-						self.actives[cat].icon = icon[cat]
 					end
-				else
-					self.actives[cat] = {}
-					self.actives[cat].start = GetTime()
-					self.actives[cat].dr = 1
-					self.actives[cat].icon = icon[cat]
 				end
 			end
 			needupdate = true
